@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Approval</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .invoice-summary {
+            background-color: #e8f4fd;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        label {
+            font-weight: bold;
+        }
+        .value {
+            margin-bottom: 10px;
+        }
+        .approval-status {
+            background-color: #ffeaa7;
+            color: #d35400;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .approval-timeline {
+            margin-bottom: 20px;
+        }
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .timeline-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #3498db;
+            margin-right: 10px;
+        }
+        .timeline-content {
+            flex-grow: 1;
+        }
+        .comments {
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .approve-btn { background-color: #2ecc71; color: #fff; }
+        .reject-btn { background-color: #e74c3c; color: #fff; }
+        .request-changes-btn { background-color: #f39c12; color: #fff; }
+        button:hover { opacity: 0.9; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Invoice Approval</h1>
+        <div class="approval-status">Pending Approval</div>
+        
+        <div class="invoice-summary">
+            <h2>Invoice Summary</h2>
+            <div class="grid">
+                <div>
+                    <label>Invoice Number:</label>
+                    <div class="value" id="invoiceNumber">INV-2024001</div>
+                </div>
+                <div>
+                    <label>Client:</label>
+                    <div class="value" id="clientName">Acme Corporation</div>
+                </div>
+                <div>
+                    <label>Candidate:</label>
+                    <div class="value" id="candidateName">Jane Doe</div>
+                </div>
+                <div>
+                    <label>Job Title:</label>
+                    <div class="value" id="jobTitle">Senior Software Engineer</div>
+                </div>
+                <div>
+                    <label>Total Amount:</label>
+                    <div class="value" id="totalAmount">$16,500</div>
+                </div>
+                <div>
+                    <label>Due Date:</label>
+                    <div class="value" id="dueDate">2024-10-15</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="approval-timeline">
+            <h2>Approval Timeline</h2>
+            <div class="timeline-item">
+                <div class="timeline-icon"></div>
+                <div class="timeline-content">
+                    <strong>Invoice Created</strong> - 2024-09-15 10:30 AM by Alice Johnson
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon"></div>
+                <div class="timeline-content">
+                    <strong>Submitted for Approval</strong> - 2024-09-16 02:15 PM by Alice Johnson
+                </div>
+            </div>
+            <!-- More timeline items can be added here -->
+        </div>
+        
+        <div class="comments">
+            <h2>Comments</h2>
+            <div id="existingComments">
+                <p><strong>Alice Johnson (2024-09-16 02:15 PM):</strong> Invoice submitted for approval. Please review and confirm all details are correct.</p>
+            </div>
+            <textarea id="newComment" rows="4" placeholder="Add your comments here..."></textarea>
+        </div>
+        
+        <div class="actions">
+            <button class="approve-btn" onclick="approveInvoice()">Approve Invoice</button>
+            <button class="request-changes-btn" onclick="requestChanges()">Request Changes</button>
+            <button class="reject-btn" onclick="rejectInvoice()">Reject Invoice</button>
+        </div>
+    </div>
+
+    <script>
+        function approveInvoice() {
+            const comment = document.getElementById('newComment').value;
+            alert(`Invoice approved. Comment: ${comment}`);
+            // In a real application, you would send this data to the server
+        }
+
+        function requestChanges() {
+            const comment = document.getElementById('newComment').value;
+            if (!comment) {
+                alert('Please add a comment explaining the requested changes.');
+                return;
+            }
+            alert(`Changes requested. Comment: ${comment}`);
+            // In a real application, you would send this data to the server
+        }
+
+        function rejectInvoice() {
+            const comment = document.getElementById('newComment').value;
+            if (!comment) {
+                alert('Please add a comment explaining the reason for rejection.');
+                return;
+            }
+            alert(`Invoice rejected. Comment: ${comment}`);
+            // In a real application, you would send this data to the server
+        }
+    </script>
+</body>
+</html>
